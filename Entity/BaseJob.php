@@ -17,13 +17,13 @@ abstract class BaseJob extends \Dtc\QueueBundle\Model\RetryableJob
 
     /**
      * @Grid\Column(sortable=true, searchable=true)
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="worker_name")
      */
     protected $workerName;
 
     /**
      * @Grid\Column(sortable=true, searchable=true)
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="class_name")
      */
     protected $className;
 
@@ -56,7 +56,7 @@ abstract class BaseJob extends \Dtc\QueueBundle\Model\RetryableJob
     protected $locked;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", name="locked_at", nullable=true)
      */
     protected $lockedAt;
 
@@ -67,19 +67,19 @@ abstract class BaseJob extends \Dtc\QueueBundle\Model\RetryableJob
     protected $priority;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="crc_hash")
      */
     protected $crcHash;
 
     /**
      * @Grid\Column(sortable=true,order=2)
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="when_at")
      */
     protected $whenAt;
 
     /**
      * @Grid\Column(sortable=true)
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="expires_at")
      */
     protected $expiresAt;
 
@@ -87,14 +87,14 @@ abstract class BaseJob extends \Dtc\QueueBundle\Model\RetryableJob
      * When the job started.
      *
      * @Grid\Column(sortable=true)
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="started_at")
      */
     protected $startedAt;
 
     /**
      * When the job finished.
      *
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="finished_at")
      */
     protected $finishedAt;
 
@@ -109,42 +109,42 @@ abstract class BaseJob extends \Dtc\QueueBundle\Model\RetryableJob
     protected $message;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="created_at")
      */
     protected $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="updated_at")
      */
     protected $updatedAt;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, name="max_duration")
      */
     protected $maxDuration;
 
     /**
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="bigint", nullable=true, name="run_id")
      */
     protected $runId;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="stalled_count")
      */
     protected $stalledCount = 0;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, name="max_stalled")
      */
     protected $maxStalled;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="error_count")
      */
     protected $errorCount = 0;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, name="max_error")
      */
     protected $maxError;
 
@@ -154,7 +154,7 @@ abstract class BaseJob extends \Dtc\QueueBundle\Model\RetryableJob
     protected $retries = 0;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, name="max_retries")
      */
     protected $maxRetries;
 

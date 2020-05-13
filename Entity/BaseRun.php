@@ -16,11 +16,11 @@ abstract class BaseRun extends \Dtc\QueueBundle\Model\Run
     protected $id;
     /**
      * @Grid\Column(sortable=true, order=2)
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="started_at")
      */
     protected $startedAt;
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="ended_at")
      */
     protected $endedAt;
 
@@ -37,13 +37,13 @@ abstract class BaseRun extends \Dtc\QueueBundle\Model\Run
 
     /**
      * @Grid\Column(sortable=true)
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="last_heartbeat_at")
      */
     protected $lastHeartbeatAt;
 
     /**
      * @Grid\Column()
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, name="max_count")
      */
     protected $maxCount;
     /**
@@ -65,13 +65,13 @@ abstract class BaseRun extends \Dtc\QueueBundle\Model\Run
 
     /**
      * @Grid\Column()
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, name="process_timeout")
      */
     protected $processTimeout;
 
     /**
      * @Grid\Column()
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, name="current_job_id")
      */
     protected $currentJobId;
 }

@@ -25,7 +25,7 @@ class RunArchive extends BaseRun
 
     /**
      * @Grid\Column(sortable=true, order=2)
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="ended_at")
      */
     protected $endedAt;
 
@@ -36,22 +36,22 @@ class RunArchive extends BaseRun
     protected $elapsed;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, name="max_count")
      */
     protected $maxCount;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="last_heartbeat_at")
      */
     protected $lastHeartbeatAt;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=true, name="process_timeout")
      */
     protected $processTimeout;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, name="current_job_id")
      */
     protected $currentJobId;
 }
