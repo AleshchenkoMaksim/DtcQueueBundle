@@ -41,22 +41,23 @@ abstract class Worker
     }
 
     /**
-     * @param int|null $time
-     * @param bool     $batch
+     * @param \DateTime|null $dateTime
+     * @param bool $batch
      * @param int|null $priority
+     *
+     * @return mixed
      */
-    public function at($time = null, $batch = false, $priority = null)
+    public function at($dateTime = null, $batch = false, $priority = null)
     {
-        if (null === $time) {
-            $time = time();
+        if (null === $dateTime) {
+            $dateTime = new \DateTime();
         }
-        $dateTime = new \DateTime("@$time");
 
         return new $this->jobClass($this, $batch, $priority, $dateTime);
     }
 
     /**
-     * @param int      $delay    Amount of time to delay
+     * @param int $delay    Amount of time to delay in seconds
      * @param int|null $priority
      */
     public function later($delay = 0, $priority = null)
@@ -66,7 +67,11 @@ abstract class Worker
 
     public function batchOrLaterDelay($delay = 0, $batch = false, $priority = null)
     {
-        $job = $this->at(time() + $delay, $batch, $priority);
+        $dateTime = new \DateTime();
+        if ($delay) {
+            $dateTime->modify("+{$delay} seconds");
+        }
+        $job = $this->at($dateTime, $batch, $priority);
         $job->setDelay($delay);
 
         return $job;
@@ -82,12 +87,12 @@ abstract class Worker
     }
 
     /**
-     * @param int|null $time
+     * @param \DateTime|null $dateTime
      * @param int|null $priority
      */
-    public function batchAt($time = null, $priority = null)
+    public function batchAt($dateTime = null, $priority = null)
     {
-        return $this->at($time, true, $priority);
+        return $this->at($dateTime, true, $priority);
     }
 
     abstract public function getName();
